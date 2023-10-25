@@ -1,21 +1,17 @@
 import React from 'react';
+import CityCard from './CityCard';
 
-function Cities({ selectedCountry, cities }) {
+const Cities = ({ selectedCountry, cities }) => {
+  console.log(selectedCountry);
+  const filteredCities = cities.filter((city) => city.country === selectedCountry);
+
   return (
-    <div>
-      <h2>Cities in {selectedCountry}</h2>
-      <div className="city-cards">
-        {cities.map(city => (
-          <div className="city-card" key={city.id}>
-            <h3>{city.name}</h3>
-            <p>Country: {city.country}</p>
-            <p>{city.info}</p>
-            <img src={city.img} alt={city.name} />
-          </div>
-        ))}
-      </div>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-8">
+      {filteredCities.map((city) => (
+        <CityCard key={city.id} city={city} />
+      ))}
     </div>
   );
-}
+};
 
 export default Cities;

@@ -1,8 +1,30 @@
 import './App.css';
 import Home from './components/home';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/header';
+import CitiesList from './components/CitiesList';
 import Footer from './components/footer';
-import Cities from './components/cities';
+import About from './components/About';
+import Contact from './components/Contact';
+
+function App() {
+  return (
+    <div className="App">
+      <Router>
+        <Header />
+        <Routes>
+          <Route path='/' element={<Home citiesData={citiesData} />}></Route>
+          <Route path='/about' element={<About />}></Route>
+          <Route path='/cities' element={<CitiesList citiesData={citiesData} />}></Route>
+          <Route path='/contact' element={<Contact />}></Route>
+        </Routes>
+      </Router>
+      <Footer />
+    </div>
+  );
+}
+
+export default App;
 
 const citiesData = [
   {
@@ -73,18 +95,19 @@ const citiesData = [
       country: 'Germany',
       info: 'The capital of Germany, known for its rich history, vibrant arts scene, and modern architecture.',
       img: 'https://static.independent.co.uk/s3fs-public/thumbnails/image/2019/04/03/11/fernsehturm.jpg?width=1200&height=1200&fit=crop',
+    },
+    {
+      id: 11,
+      name: 'Munich',
+      country: 'Germany',
+      info: 'Famous for its beer culture, historical architecture, and vibrant cultural scene.',
+      img: 'https://cdn.britannica.com/06/152206-050-72BD5CAC/twin-towers-Church-of-Our-Lady-Munich.jpg',
+    },
+    {
+      id: 12,
+      name: 'San Francisco',
+      country: 'United States',
+      info: 'Located in California, known for its picturesque views of the Golden Gate Bridge, cable cars, and a thriving tech industry.',
+      img: 'https://upload.wikimedia.org/wikipedia/commons/6/61/San_Francisco_from_the_Marin_Headlands_in_August_2022.jpg',
     }
 ]
-
-function App() {
-  const selectedCountry = 'Your Selected Country';
-  return (
-    <div className="App">
-      <Header />
-      <Cities selectedCountry={selectedCountry} cities={citiesData} />
-      <Footer />
-    </div>
-  );
-}
-
-export default App;
